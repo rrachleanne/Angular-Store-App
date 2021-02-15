@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">{{pageTitle}}</div>
+  <div class="card-body">
+    <div class="row">
+      <div xlass="col-md-2">Filter by:</div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]='listFilter'/>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div xlass="col-md-2">Filter by: {{listFilter}}</div>
+      <div class="col-md-4">
+        <h4>Filtered By:</h4>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf='products && products.length' (click)='toggleImage()'>
+        <thead>
+          <tr>
+            <th>
+              <button class="btn btn-primary">{{showImage ? 'Hide' : 'Show'}} Image</button>
+            </th>
+            <th>Product Name</th>
+            <th>Product ID</th>
+            <th>State</th>
+            <th>Suburb</th>
+            <th> Rating</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor= 'let product of filteredProducts'>
+                <td><img *ngIf= 'showImage' [src]='product.imageUrl'
+                    [title]='product.productName'
+                    [style.width.px]='imageWidth'
+                    [style.width.px]='imageMargin'>
+                </td>
+                <td>{{ product.ProductName}}</td>
+                <td>{{product.ProductId | convertToSpaces: '-'}}</td>
+                <td>{{product.State | uppercase }}</td>
+                <td>{{product.Suburb| uppercase}} </td>
+                <td> {{product.Rating}}</td>
+
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
